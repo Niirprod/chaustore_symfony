@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MyAdmin{% endblock %}
+
+{% block body %}
+
+<h1> Willkommen im Chaustore </h1>
+
+ 	{% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <br>
+ 
+    	<a href="{{path('product_index')}}">Product</a>
+    	<a href="{{path('brand_index')}}">Brand</a>
+    	<a href="{{path('category_index')}}">Category</a>
+    	<a href="{{path('color_index')}}">Color</a>
+    	<a href="{{path('size_index')}}">Size</a>
+    	<a href="{{path('stock_index')}}">Stock</a>
+
+
+
+
+
+<h2> hello {{app.user.username}} </h2>
+
+	{% for role_user in app.user.roles %}
+
+		<p>your role is {{ role_user }}</p>
+		<p>and your id is {{ app.user.id }}</p>
+
+
+	{% endfor %}
+
+    
+
+   
+{% endblock %}

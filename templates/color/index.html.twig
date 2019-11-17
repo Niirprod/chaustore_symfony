@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Color index{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+    {% endif %}
+
+    <br>
+
+    <a href="{{path('app_admin')}}">Home</a>
+    <a href="{{path('product_index')}}">Product</a>
+    <a href="{{path('brand_index')}}">Brand</a>
+    <a href="{{path('category_index')}}">Category</a>
+    <a href="{{path('color_index')}}">Color</a>
+    <a href="{{path('size_index')}}">Size</a>
+    <a href="{{path('stock_index')}}">Stock</a>
+
+    <h1>Color index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for color in colors %}
+            <tr>
+                <td>{{ color.id }}</td>
+                <td>{{ color.name }}</td>
+                <td>
+                    <a href="{{ path('color_show', {'id': color.id}) }}">show</a>
+                    <a href="{{ path('color_edit', {'id': color.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('color_new') }}">Create new</a>
+{% endblock %}
